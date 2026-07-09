@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopFlow — Premium Online Store</title>
+    <link rel="stylesheet" href="css/store.css">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/tabler-icons.min.css">
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────────────────────────────────────── -->
+<nav class="navbar">
+    <div class="nav-logo" data-page="home"><span>⚡</span> ShopFlow</div>
+    <button class="nav-link active" data-page="home">Home</button>
+    <button class="nav-link" data-page="products">Products</button>
+    <button class="nav-link" data-page="about">About</button>
+    <button class="nav-link" data-page="contact">Contact</button>
+    <a class="nav-admin-link" href="admin/index.php">Admin ↗</a>
+    <button class="cart-btn" onclick="openCart()">
+        🛒 Cart <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+    </button>
+</nav>
+
+<!-- ── Pages ──────────────────────────────────────────────────────────────── -->
+
+<!-- Home -->
+<div id="page-home" class="page-view">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-eyebrow">New Arrivals · Summer 2025</div>
+        <h1>Everything you need,<br>delivered fast.</h1>
+        <p>Premium products across electronics, fashion, home, and books — with free delivery on orders over $50.</p>
+        <div class="hero-actions">
+            <button class="btn-primary blue" data-page="products" style="padding:13px 30px;font-size:15px">Shop now →</button>
+            <button class="btn-hero-outline" data-page="about" style="padding:13px 30px;font-size:15px">Learn more</button>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <div class="page">
+        <h2 class="section-title">Featured products</h2>
+        <div id="featured-grid" class="product-grid">
+            <div class="spinner"></div>
+        </div>
+        <div class="section-footer">
+            <button class="btn-secondary" data-page="products">View all products →</button>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <section class="section-white">
+        <div class="page">
+            <h2 class="section-title">Shop by category</h2>
+            <div id="cat-grid-home" class="cat-grid">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Products -->
+<div id="page-products" class="page-view" style="display:none">
+    <div class="page">
+        <h1 class="page-title">All Products</h1>
+        <div id="cat-chips" class="cat-filter"></div>
+        <div id="products-grid" class="product-grid">
+            <div class="spinner"></div>
+        </div>
+    </div>
+</div>
+
+<!-- About -->
+<div id="page-about" class="page-view" style="display:none">
+    <div class="page">
+        <h1 class="page-title">About ShopFlow</h1>
+        <p class="page-subtitle" style="max-width:580px">
+            ShopFlow is a modern e-commerce platform built for seamless shopping. We partner with top brands to bring you quality products at competitive prices — with fast delivery and easy returns.
+        </p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-title">Fast delivery</div>
+                <div class="feature-desc">Free shipping on orders over $50. Express delivery available nationwide within 2 business days.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-title">Easy returns</div>
+                <div class="feature-desc">30-day hassle-free returns on all products, no questions asked. We process refunds within 24 hours.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Secure payments</div>
+                <div class="feature-desc">256-bit SSL encryption on every transaction. We never store your card details.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <div class="feature-title">24/7 support</div>
+                <div class="feature-desc">Our team is always available via chat, email, or phone to help you with any questions.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact -->
+<div id="page-contact" class="page-view" style="display:none">
+    <div class="page">
+        <h1 class="page-title">Contact us</h1>
+        <p class="page-subtitle">We'd love to hear from you. Fill out the form and we'll reply within 24 hours.</p>
+        <div style="max-width:500px">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" id="cnt-name" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input class="form-input" id="cnt-email" type="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-textarea" id="cnt-message" placeholder="How can we help?"></textarea>
+            </div>
+            <button class="btn-primary" onclick="submitContact()">Send message</button>
+        </div>
+    </div>
+</div>
+
+<!-- Order Confirmation -->
+<div id="page-confirm" class="page-view" style="display:none">
+    <div id="confirm-body"></div>
+</div>
+
+<!-- ── Product Detail Modal ───────────────────────────────────────────────── -->
+<div id="modal-product-detail" class="modal-overlay" style="display:none">
+    <div class="modal" style="max-width:580px">
+        <div class="modal-header">
+            <div></div>
+            <button class="modal-close" onclick="closeModal('modal-product-detail')">✕</button>
+        </div>
+        <div id="product-detail-body"></div>
+    </div>
+</div>
+
+<!-- ── Cart Sidebar ───────────────────────────────────────────────────────── -->
+<div id="cart-overlay" class="cart-overlay" style="display:none" onclick="closeCart()"></div>
+<div id="cart-sidebar" class="cart-sidebar" style="display:none;flex-direction:column">
+    <div class="modal-header" style="margin-bottom:20px">
+        <h2 style="font-size:1.15rem;font-weight:700">Your cart</h2>
+        <button class="modal-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items" style="flex:1;overflow-y:auto"></div>
+    <div id="cart-footer" style="display:none;padding-top:16px;border-top:1px solid #f0f0f0;margin-top:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-weight:600;font-size:16px">Total</span>
+            <span id="cart-total" style="font-size:1.4rem;font-weight:700;color:#185FA5">$0.00</span>
+        </div>
+        <button class="btn-primary blue" style="width:100%;padding:13px;font-size:15px" onclick="openCheckout()">Proceed to checkout →</button>
+    </div>
+</div>
+
+<!-- ── Checkout Modal ─────────────────────────────────────────────────────── -->
+<div id="modal-checkout" class="modal-overlay" style="display:none">
+    <div class="modal" style="max-width:560px">
+        <div class="modal-header">
+            <h2 class="modal-title">Checkout</h2>
+            <button class="modal-close" onclick="closeModal('modal-checkout')">✕</button>
+        </div>
+
+        <div style="font-size:12px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Delivery information</div>
+        <div class="form-group">
+            <label class="form-label">Full name</label>
+            <input class="form-input" id="co-name" placeholder="Jane Smith">
+            <div class="form-error" id="co-name-err" style="display:none"></div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input class="form-input" id="co-email" type="email" placeholder="jane@example.com">
+            <div class="form-error" id="co-email-err" style="display:none"></div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Delivery address</label>
+            <input class="form-input" id="co-address" placeholder="123 Main Street, Colombo">
+            <div class="form-error" id="co-address-err" style="display:none"></div>
+        </div>
+
+        <hr class="divider">
+        <div style="font-size:12px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Payment details</div>
+        <div class="form-group">
+            <label class="form-label">Card number</label>
+            <input class="form-input" id="co-card" placeholder="1234 5678 9012 3456">
+            <div class="form-error" id="co-card-err" style="display:none"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label">Expiry date</label>
+                <input class="form-input" id="co-exp" placeholder="MM/YY">
+                <div class="form-error" id="co-exp-err" style="display:none"></div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">CVV</label>
+                <input class="form-input" id="co-cvv" placeholder="123">
+                <div class="form-error" id="co-cvv-err" style="display:none"></div>
+            </div>
+        </div>
+
+        <hr class="divider">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+            <span style="font-weight:600;font-size:15px">Order total</span>
+            <span id="checkout-total" style="font-size:1.4rem;font-weight:700;color:#185FA5">$0.00</span>
+        </div>
+        <button class="btn-primary blue" id="checkout-submit" style="width:100%;padding:13px;font-size:15px" onclick="submitCheckout()">Place order</button>
+    </div>
+</div>
+
+<!-- ── Toast ──────────────────────────────────────────────────────────────── -->
+<div id="toast" class="toast" style="display:none"></div>
+
+<script src="js/store.js"></script>
+</body>
+</html>
