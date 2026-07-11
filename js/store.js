@@ -74,6 +74,13 @@ function starsHTML(rating) {
     return '★'.repeat(full) + '☆'.repeat(5 - full);
 }
 
+// ─── Image Helper ─────────────────────────────────────────────────────────────
+function productImgHTML(p) {
+    const safeAlt = (p.name || '').replace(/"/g, '&quot;');
+    return `<img src="${p.image}" alt="${safeAlt}" loading="lazy"
+        onerror="this.onerror=null;this.src='images/default.jpg';">`;
+}
+
 // ─── Page Router ──────────────────────────────────────────────────────────────
 function showPage(name) {
     document.querySelectorAll('.page-view').forEach(el => el.style.display = 'none');
@@ -134,7 +141,7 @@ function productCardHTML(p) {
     const inStock = parseInt(p.stock) > 0;
     return `
     <div class="product-card">
-        <div class="product-card-img" onclick="openProductDetail(${p.id})">${p.image}</div>
+        <div class="product-card-img" onclick="openProductDetail(${p.id})">${productImgHTML(p)}</div>
         <div class="product-card-body">
             <div class="product-cat-label">${p.category_name || ''}</div>
             <div class="product-name" onclick="openProductDetail(${p.id})">${p.name}</div>
@@ -157,7 +164,7 @@ async function openProductDetail(productId) {
     const p = allProducts.find(x => x.id == productId) || await api('get_product', 'GET', null, { id: productId });
     const inStock = parseInt(p.stock) > 0;
     document.getElementById('product-detail-body').innerHTML = `
-        <div class="detail-emoji">${p.image}</div>
+        <div class="detail-img">${productImgHTML(p)}</div>
         <div style="margin-top:16px">
             <div class="detail-cat">${p.category_name || ''}</div>
             <div class="detail-name">${p.name}</div>
@@ -207,7 +214,7 @@ function renderCartItems() {
         if (!p) return '';
         return `
         <div class="cart-item">
-            <div class="cart-item-img">${p.image}</div>
+            <div class="cart-item-img">${productImgHTML(p)}</div>
             <div style="flex:1">
                 <div class="cart-item-name">${p.name}</div>
                 <div class="cart-item-price">$${parseFloat(p.price).toFixed(2)}</div>

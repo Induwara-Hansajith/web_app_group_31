@@ -30,6 +30,18 @@ function starsHTML(r) {
     return '<span class="stars" style="color:#EF9F27">' + '★'.repeat(n) + '☆'.repeat(5-n) + '</span>';
 }
 
+// ─── Image Helper ─────────────────────────────────────────────────────────────
+// admin pages live in /admin/, so store images (at project root /images/) need '../' prefixed
+function adminImgSrc(path) {
+    if (!path) return '../images/default.jpg';
+    return path.startsWith('../') ? path : '../' + path;
+}
+function prodThumbHTML(path, alt = '') {
+    const safeAlt = (alt || '').replace(/"/g, '&quot;');
+    return `<img src="${adminImgSrc(path)}" alt="${safeAlt}" class="prod-thumb"
+        onerror="this.onerror=null;this.src='../images/default.jpg';">`;
+}
+
 // ─── Modal ────────────────────────────────────────────────────────────────────
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
@@ -166,7 +178,10 @@ async function loadProducts(search = '') {
         const stockLabel = stock === 0 ? 'Out of stock' : stock;
         return `
         <tr>
-            <td><span style="margin-right:8px">${p.image}</span><strong>${p.name}</strong></td>
+            <td style="display:flex;align-items:center;gap:10px">
+                ${prodThumbHTML(p.image, p.name)}
+                <strong>${p.name}</strong>
+            </td>
             <td style="color:#666">${p.category_name || '—'}</td>
             <td><strong>$${parseFloat(p.price).toFixed(2)}</strong></td>
             <td class="${stockClass}">${stockLabel}</td>
@@ -177,6 +192,12 @@ async function loadProducts(search = '') {
             </td>
         </tr>`;
     }).join('');
+}
+
+function updateProdImgPreview() {
+    const path = document.getElementById('prod-image').value.trim();
+    const img  = document.getElementById('prod-img-preview');
+    img.src = adminImgSrc(path);
 }
 
 async function openProdModal(id = null) {
@@ -203,11 +224,12 @@ async function openProdModal(id = null) {
         document.getElementById('prod-name').value        = '';
         document.getElementById('prod-price').value      = '';
         document.getElementById('prod-stock').value      = '';
-        document.getElementById('prod-image').value      = '📦';
+        document.getElementById('prod-image').value      = 'images/default.jpg';
         document.getElementById('prod-description').value= '';
         document.getElementById('prod-rating').value     = '4.5';
         document.getElementById('prod-reviews').value    = '0';
     }
+    updateProdImgPreview();
     openModal('modal-prod');
 }
 
@@ -218,7 +240,7 @@ async function saveProd() {
         category_id: document.getElementById('prod-category').value,
         price:       document.getElementById('prod-price').value,
         stock:       document.getElementById('prod-stock').value,
-        image:       document.getElementById('prod-image').value.trim() || '📦',
+        image:       document.getElementById('prod-image').value.trim() || 'images/default.jpg',
         description: document.getElementById('prod-description').value.trim(),
         rating:      document.getElementById('prod-rating').value,
         reviews:     document.getElementById('prod-reviews').value,
@@ -288,8 +310,8 @@ async function openOrderModal(id) {
         </div>
         <hr class="divider">
         ${order.items.map(i => `
-            <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px">
-                <span>${i.image} ${i.name} × ${i.qty}</span>
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:14px;margin-bottom:8px">
+                <span style="display:flex;align-items:center;gap:8px">${prodThumbHTML(i.image, i.name)} ${i.name} × ${i.qty}</span>
                 <span style="font-weight:600">$${(parseFloat(i.price)*i.qty).toFixed(2)}</span>
             </div>`).join('')}
         <hr class="divider">

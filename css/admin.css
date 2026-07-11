@@ -372,3 +372,27 @@ input[type="color"] {
     .admin-main { margin-left: 0; padding: 20px 14px; }
     .form-row { grid-template-columns: 1fr; }
 }
+
+/* ─── Product Thumbnails (table rows) ──────────────────────────────────────── */
+.prod-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+}
+
+/* ─── Product Image Preview (modal) ────────────────────────────────────────── */
+.prod-img-preview-wrap {
+    margin-top: 10px;
+}
+.prod-img-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+}

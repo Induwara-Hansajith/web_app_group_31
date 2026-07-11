@@ -91,7 +91,7 @@ switch ($action) {
         $cat  = intval($d['category_id'] ?? 0);
         $price= floatval($d['price'] ?? 0);
         $stock= intval($d['stock']  ?? 0);
-        $img  = $db->real_escape_string($d['image'] ?? '📦');
+        $img  = $db->real_escape_string($d['image'] ?? 'images/default.jpg');
         $desc = $db->real_escape_string($d['description'] ?? '');
         $rat  = floatval($d['rating'] ?? 4.5);
         $rev  = intval($d['reviews'] ?? 0);

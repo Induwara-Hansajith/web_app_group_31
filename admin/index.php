@@ -229,8 +229,12 @@ $loggedIn = !empty($_SESSION['admin']);
             <select class="form-select" id="prod-category"></select>
         </div>
         <div class="form-group">
-            <label class="form-label">Emoji icon</label>
-            <input class="form-input" id="prod-image" placeholder="🎧">
+            <label class="form-label">Image path <small style="color:#888">(relative to store root, e.g. images/mouse.jpg)</small></label>
+            <input class="form-input" id="prod-image" placeholder="images/mouse.jpg" oninput="updateProdImgPreview()">
+            <div class="prod-img-preview-wrap">
+                <img id="prod-img-preview" class="prod-img-preview" src="../images/default.jpg"
+                     onerror="this.src='../images/default.jpg'" alt="preview">
+            </div>
         </div>
         <div class="form-group">
             <label class="form-label">Description</label>
