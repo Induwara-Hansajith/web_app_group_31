@@ -150,7 +150,7 @@ function productCardHTML(p) {
                 <span>${parseFloat(p.rating).toFixed(1)} (${p.reviews})</span>
             </div>
             <div class="product-footer">
-                <span class="product-price">$${parseFloat(p.price).toFixed(2)}</span>
+                <span class="product-price">LKR${parseFloat(p.price).toFixed(2)}</span>
                 ${inStock
                     ? `<button class="btn-sm" onclick="addToCart(${p.id}, '${p.name.replace(/'/g,"\\'")}')">Add to cart</button>`
                     : `<span class="out-of-stock">Out of stock</span>`}
@@ -176,7 +176,7 @@ async function openProductDetail(productId) {
             <hr class="divider">
             <div style="display:flex;align-items:center;justify-content:space-between">
                 <div>
-                    <div class="detail-price">$${parseFloat(p.price).toFixed(2)}</div>
+                    <div class="detail-price">LKR${parseFloat(p.price).toFixed(2)}</div>
                     <div class="detail-stock">${p.stock} in stock</div>
                 </div>
                 ${inStock
@@ -217,7 +217,7 @@ function renderCartItems() {
             <div class="cart-item-img">${productImgHTML(p)}</div>
             <div style="flex:1">
                 <div class="cart-item-name">${p.name}</div>
-                <div class="cart-item-price">$${parseFloat(p.price).toFixed(2)}</div>
+                <div class="cart-item-price">LKR${parseFloat(p.price).toFixed(2)}</div>
                 <div class="qty-controls">
                     <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
                     <span class="qty-val">${item.qty}</span>
@@ -227,7 +227,7 @@ function renderCartItems() {
             </div>
         </div>`;
     }).join('');
-    document.getElementById('cart-total').textContent = `$${cartTotal().toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `LKR${cartTotal().toFixed(2)}`;
     footer.style.display = 'block';
     updateCartBadge();
 }
@@ -236,7 +236,7 @@ function renderCartItems() {
 function openCheckout() {
     closeCart();
     openModal('modal-checkout');
-    document.getElementById('checkout-total').textContent = `$${cartTotal().toFixed(2)}`;
+    document.getElementById('checkout-total').textContent = `LKR${cartTotal().toFixed(2)}`;
 }
 
 async function submitCheckout() {
@@ -294,7 +294,7 @@ function renderConfirmation(orderId, email, total) {
                 <div style="font-weight:700;margin-bottom:14px">Order total</div>
                 <div class="summary-row summary-total">
                     <span>Total paid</span>
-                    <span style="color:#185FA5">$${parseFloat(total).toFixed(2)}</span>
+                    <span style="color:#185FA5">LKR${parseFloat(total).toFixed(2)}</span>
                 </div>
             </div>
             <button class="btn-primary" onclick="showPage('home');loadData()">Continue shopping</button>
