@@ -89,7 +89,7 @@ async function loadDashboard() {
         api('get_orders')
     ]);
 
-    document.getElementById('stat-revenue').textContent  = `$${parseFloat(stats.revenue).toFixed(2)}`;
+    document.getElementById('stat-revenue').textContent  = `LKR${parseFloat(stats.revenue).toFixed(2)}`;
     document.getElementById('stat-orders').textContent   = stats.orders;
     document.getElementById('stat-products').textContent = stats.products;
     document.getElementById('stat-delivered').textContent= stats.delivered;
@@ -100,7 +100,7 @@ async function loadDashboard() {
         <tr>
             <td><strong>#${o.id}</strong></td>
             <td>${o.customer_name}<br><small style="color:#888">${o.customer_email}</small></td>
-            <td><strong>$${parseFloat(o.total).toFixed(2)}</strong></td>
+            <td><strong>LKR${parseFloat(o.total).toFixed(2)}</strong></td>
             <td><span class="status-chip status-${o.status}">${o.status}</span></td>
             <td style="color:#888">${o.created_at.slice(0,10)}</td>
         </tr>`).join('');
@@ -183,7 +183,7 @@ async function loadProducts(search = '') {
                 <strong>${p.name}</strong>
             </td>
             <td style="color:#666">${p.category_name || '—'}</td>
-            <td><strong>$${parseFloat(p.price).toFixed(2)}</strong></td>
+            <td><strong>LKR${parseFloat(p.price).toFixed(2)}</strong></td>
             <td class="${stockClass}">${stockLabel}</td>
             <td>${starsHTML(p.rating)} <span style="font-size:12px;color:#888">${parseFloat(p.rating).toFixed(1)}</span></td>
             <td class="td-right td-nowrap">
@@ -312,11 +312,11 @@ async function openOrderModal(id) {
         ${order.items.map(i => `
             <div style="display:flex;align-items:center;justify-content:space-between;font-size:14px;margin-bottom:8px">
                 <span style="display:flex;align-items:center;gap:8px">${prodThumbHTML(i.image, i.name)} ${i.name} × ${i.qty}</span>
-                <span style="font-weight:600">$${(parseFloat(i.price)*i.qty).toFixed(2)}</span>
+                <span style="font-weight:600">LKR${(parseFloat(i.price)*i.qty).toFixed(2)}</span>
             </div>`).join('')}
         <hr class="divider">
         <div style="display:flex;justify-content:space-between;font-weight:700;font-size:16px;margin-bottom:20px">
-            <span>Total</span><span style="color:#185FA5">$${parseFloat(order.total).toFixed(2)}</span>
+            <span>Total</span><span style="color:#185FA5">LKR${parseFloat(order.total).toFixed(2)}</span>
         </div>
         <div class="form-label">Update status</div>
         <div class="status-actions">

@@ -78,22 +78,22 @@ function installDB() {
             ('Clothing',    'ti-shirt',          '#7F77DD'),
             ('Stationery',       'ti-book',            '#BA7517')");
 
-        $conn->query("INSERT INTO products (name, category_id, price, stock, image, description, rating, reviews) VALUES
-            ('Scientific Calculator', 1, 8000, 80, 'images/calculator.jpeg', 'Multi-function scientific calculator approved for university exams.', 4.8, 492),
-            ('A4 Spiral Notebook', 4, 350, 250, 'images/notebook.png', '200-page ruled notebook perfect for lectures and note-taking.', 4.6, 215),
-            ('Blue Ballpoint Pen (Pack of 10)', 4, 500, 180, 'images/pen.jpg', 'Smooth writing pens suitable for daily academic use.', 4.5, 165),
-            ('Mechanical Pencil Set', 4, 1230, 120, 'images/pencil.jpg', 'Includes 2 mechanical pencils with refill leads.', 4.7, 97),
-            ('Sticky Notes Pack', 4, 325, 140, 'images/sticky_notes.jpg', 'Colorful sticky notes for reminders and studying.', 4.6, 84),
-            ('16GB USB Flash Drive', 1, 1899, 65, 'images/usb16.jpg', 'USB 3.0 flash drive for storing assignments and projects.', 4.8, 212),
-            ('Wireless Mouse', 1, 2560, 55, 'images/mouse.jpg', 'Ergonomic wireless mouse with adjustable DPI.', 4.7, 173),
-            ('Laptop Backpack', 4, 3530, 40, 'images/backpack.png', 'Water-resistant backpack fits laptops up to 15.6 inches.', 4.8, 264),
-            ('Laptop Cooling Pad', 1, 6500, 38, 'images/cooling_pad.png', 'Dual-fan cooling pad for gaming and study laptops.', 4.5, 116),
-            ('Wireless Earbuds', 1, 5000, 50, 'images/earbuds.jpg', 'Bluetooth earbuds with charging case and noise isolation.', 4.7, 328),
-            ('University Hoodie', 4, 3250, 45, 'images/hoodie.jpeg', 'Comfortable university-branded hoodie made from premium cotton.', 4.8, 154),
-            ('University T-Shirt', 4, 2800, 70, 'images/tshirt.jpeg', 'Official university logo T-shirt.', 4.6, 102),
-            ('Reusable Water Bottle', 4, 1390, 90, 'images/water_bottle.jpeg', '750ml stainless steel insulated water bottle.', 4.8, 241),
-            ('Canvas Tote Bag', 4, 990, 85, 'images/tote_bag.jpeg', 'Eco-friendly reusable tote bag for books and groceries.', 4.5, 91),
-            ('Desk Study Lamp', 4, 1640, 30, 'images/study_lamp.png', 'LED desk lamp with adjustable brightness and color temperature.', 4.7, 134)");
+    $conn->query("INSERT INTO products (name, category_id, price, stock, image, description, rating, reviews) VALUES
+    ('Scientific Calculator', 1, 8000, 80, 'images/calculator.jpeg', 'Multi-function scientific calculator approved for university exams.', 4.8, 492),
+    ('A4 Spiral Notebook', 3, 350, 250, 'images/notebook.png', '200-page ruled notebook perfect for lectures and note-taking.', 4.6, 215),
+    ('Blue Ballpoint Pen (Pack of 10)', 3, 500, 180, 'images/pen.jpg', 'Smooth writing pens suitable for daily academic use.', 4.5, 165),
+    ('Mechanical Pencil Set', 3, 1230, 120, 'images/pencil.jpg', 'Includes 2 mechanical pencils with refill leads.', 4.7, 97),
+    ('Sticky Notes Pack', 3, 325, 140, 'images/sticky_notes.jpg', 'Colorful sticky notes for reminders and studying.', 4.6, 84),
+    ('16GB USB Flash Drive', 1, 1899, 65, 'images/usb16.jpg', 'USB 3.0 flash drive for storing assignments and projects.', 4.8, 212),
+    ('Wireless Mouse', 1, 2560, 55, 'images/mouse.jpg', 'Ergonomic wireless mouse with adjustable DPI.', 4.7, 173),
+    ('Laptop Backpack', 3, 3530, 40, 'images/backpack.png', 'Water-resistant backpack fits laptops up to 15.6 inches.', 4.8, 264),
+    ('Laptop Cooling Pad', 1, 6500, 38, 'images/cooling_pad.png', 'Dual-fan cooling pad for gaming and study laptops.', 4.5, 116),
+    ('Wireless Earbuds', 1, 5000, 50, 'images/earbuds.jpg', 'Bluetooth earbuds with charging case and noise isolation.', 4.7, 328),
+    ('University Hoodie', 3, 3250, 45, 'images/hoodie.jpeg', 'Comfortable university-branded hoodie made from premium cotton.', 4.8, 154),
+    ('University T-Shirt', 3, 2800, 70, 'images/tshirt.jpeg', 'Official university logo T-shirt.', 4.6, 102),
+    ('Reusable Water Bottle', 3, 1390, 90, 'images/water_bottle.jpeg', '750ml stainless steel insulated water bottle.', 4.8, 241),
+    ('Canvas Tote Bag', 3, 990, 85, 'images/tote_bag.jpeg', 'Eco-friendly reusable tote bag for books and groceries.', 4.5, 91),
+    ('Desk Study Lamp', 3, 1640, 30, 'images/study_lamp.png', 'LED desk lamp with adjustable brightness and color temperature.', 4.7, 134)");
 
         $conn->query("INSERT INTO orders (customer_name, customer_email, customer_address, total, status, created_at) VALUES
             ('Kasun Perera',     'kasun@example.com', '12 Galle Rd, Colombo',    187.97, 'Delivered',  '2025-06-10 09:00:00'),

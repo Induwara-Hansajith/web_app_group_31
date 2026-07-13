@@ -215,10 +215,10 @@ $loggedIn = !empty($_SESSION['admin']);
             <input class="form-input" id="prod-name" placeholder="Wireless Headphones">
         </div>
         <div class="form-row">
-            <div class="form-group">
-                <label class="form-label">Price ($)</label>
-                <input class="form-input" id="prod-price" type="number" step="0.01" placeholder="99.99">
-            </div>
+           <div class="form-group">
+              <label class="form-label">Price (LKR)</label>
+              <input class="form-input" id="prod-price" type="number" step="0.01" placeholder="8000">
+           </div>
             <div class="form-group">
                 <label class="form-label">Stock quantity</label>
                 <input class="form-input" id="prod-stock" type="number" placeholder="100">
