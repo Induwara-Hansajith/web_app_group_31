@@ -76,8 +76,7 @@ function installDB() {
         $conn->query("INSERT INTO categories (name, icon, color) VALUES
             ('Electronics', 'ti-device-laptop', '#1D9E75'),
             ('Clothing',    'ti-shirt',          '#7F77DD'),
-            ('Home & Garden','ti-home',           '#D85A30'),
-            ('Books',       'ti-book',            '#BA7517')");
+            ('Stationery',       'ti-book',            '#BA7517')");
 
         $conn->query("INSERT INTO products (name, category_id, price, stock, image, description, rating, reviews) VALUES
             ('Scientific Calculator', 1, 8000, 80, 'images/calculator.jpeg', 'Multi-function scientific calculator approved for university exams.', 4.8, 492),
