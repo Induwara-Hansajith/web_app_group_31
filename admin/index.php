@@ -10,7 +10,7 @@ $loggedIn = !empty($_SESSION['admin']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopFlow Admin</title>
+    <title>UniMart</title>
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/tabler-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@ $loggedIn = !empty($_SESSION['admin']);
     <div class="login-card">
         <div class="login-icon">🔐</div>
         <h2 class="login-title">Admin login</h2>
-        <p class="login-subtitle">ShopFlow control panel</p>
+        <p class="login-subtitle">UniMart control panel</p>
         <div id="login-error" class="login-error" style="display:none"></div>
         <div class="form-group" style="text-align:left">
             <label class="form-label">Username</label>
@@ -46,7 +46,7 @@ $loggedIn = !empty($_SESSION['admin']);
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <div class="sidebar-logo">⚡ ShopFlow <small>Admin</small></div>
+        <div class="sidebar-logo">⚡ UniMart <small>Admin</small></div>
         <nav class="sidebar-nav">
             <button class="sidebar-link active" data-page="dashboard">
                 <i class="ti ti-layout-dashboard"></i> Dashboard
